@@ -1,0 +1,6 @@
+boto3
+aws-lambda-powertools
+pyjwt
+requests
+pytest
+pytest-cov
