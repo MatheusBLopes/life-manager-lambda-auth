@@ -1,7 +1,7 @@
 import json
 import os
 import boto3
-from routes.login import Login
+from routes.auth import Auth
 
 from aws_lambda_powertools import Logger
 
@@ -34,8 +34,20 @@ def lambda_handler(event, context):
 
         if resource == '/login':
             logger.info("Iniciando fluxo de login")
-            login_route = Login(client, body, client_id)
+            login_route = Auth(client, body, client_id)
             result = login_route.login()
+            return result
+        
+        if resource == '/change-password':
+            logger.info("Iniciando fluxo de mudança de senha")
+            change_password_route = Auth(client, body, client_id)
+            result = change_password_route.change_password()
+            return result
+
+        if resource == '/reset-temporary-password':
+            logger.info("Iniciando fluxo de reset de senha")
+            reset_password_route = Auth(client, body, client_id)
+            result = reset_password_route.reset_temporary_password()
             return result
 
         logger.warning(f"Resource {resource} not found")

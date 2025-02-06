@@ -132,7 +132,8 @@ add_permission_if_not_exists() {
 # Add permissions for API Gateway to invoke Lambda function
 echo "Adding permissions for API Gateway to invoke Lambda function..."
 add_permission_if_not_exists "AllowLoginExecutionFromAPIGateway" "InvokeFunction" "arn:aws:execute-api:$REGION:$AWS_ACCOUNT_ID:$API_ID/*/POST/login"
-
+add_permission_if_not_exists "AllowChangePasswordExecutionFromAPIGateway" "InvokeFunction" "arn:aws:execute-api:$REGION:$AWS_ACCOUNT_ID:$API_ID/*/POST/change-password"
+add_permission_if_not_exists "AllowResetTemporaryPasswordExecutionFromAPIGateway" "InvokeFunction" "arn:aws:execute-api:$REGION:$AWS_ACCOUNT_ID:$API_ID/*/POST/reset-temporary-password"
 
 echo "Permissions verified and updated successfully!"
 
